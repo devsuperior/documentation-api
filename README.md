@@ -10,9 +10,11 @@
     <version>2.1.0</version>
 </dependency>
 ```
+Referência: https://springdoc.org/
+
 ### Passo 2: Classe de configuração
 
-- Incluir a classe SwaggerConfig no pacote config:
+- Incluir a classe OpenAPIConfig no pacote config:
 
 ```java
 @OpenAPIDefinition
