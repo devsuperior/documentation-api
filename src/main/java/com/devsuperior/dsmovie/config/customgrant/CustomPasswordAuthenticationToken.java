@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.springframework.lang.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.server.authorization.authentication.OAuth2AuthorizationGrantAuthenticationToken;
@@ -19,12 +19,13 @@ public class CustomPasswordAuthenticationToken extends OAuth2AuthorizationGrantA
 	private final Set<String> scopes;
 	
 	public CustomPasswordAuthenticationToken(Authentication clientPrincipal,
-			@Nullable Set<String> scopes, @Nullable Map<String, Object> additionalParameters) {
+			@Nullable Set<String> scopes, @Nullable Map<String, Object> additionalParameters,
+			String username, String password) {
 		
 		super(new AuthorizationGrantType("password"), clientPrincipal, additionalParameters);
 		
-		this.username = (String) additionalParameters.get("username");
-		this.password = (String) additionalParameters.get("password");
+		this.username = username;
+		this.password = password;
 		this.scopes = Collections.unmodifiableSet(
 				scopes != null ? new HashSet<>(scopes) : Collections.emptySet());
 	}
